@@ -1,0 +1,13 @@
+includeBuild '../coding'
+include 'loader',
+        'runtime',
+        'activity-container',
+        'transform',
+        'gradle-plugin',
+        'common',
+        'manager',
+        'manager-db-test',
+        'manifest-parser',
+        'load-parameters',
+        'transform-kit',
+        'utils'

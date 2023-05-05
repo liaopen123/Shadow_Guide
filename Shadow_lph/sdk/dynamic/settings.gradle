@@ -1,0 +1,9 @@
+includeBuild '../coding'
+includeBuild '../core'
+include 'dynamic-manager',
+        'dynamic-apk',
+        'dynamic-host',
+        'dynamic-loader',
+        'dynamic-loader-impl',
+        'dynamic-host-multi-loader-ext',
+        'dynamic-manager-multi-loader-ext'

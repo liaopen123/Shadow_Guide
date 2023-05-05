@@ -1,0 +1,45 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.lph.plugin_loader'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.lph.plugin_loader"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'com.tencent.shadow.core:loader'
+    implementation 'com.tencent.shadow.dynamic:dynamic-loader'
+    implementation 'com.tencent.shadow.dynamic:dynamic-loader-impl'
+    compileOnly 'com.tencent.shadow.core:runtime'
+    compileOnly 'com.tencent.shadow.core:activity-container'
+    compileOnly 'com.tencent.shadow.core:common'
+    compileOnly 'com.tencent.shadow.dynamic:dynamic-host'//下面这行依赖是为了防止在proguard的时候找不到LoaderFactory接口
+
+}

@@ -1,0 +1,52 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        kotlin_version = '1.8.0'
+    }
+    repositories {
+        jcenter()
+        google()
+
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.3"
+        classpath 'me.tatarka:gradle-retrolambda:3.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+
+
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url("https://oss.sonatype.org/content/repositories/snapshots/") }
+        google()
+    }
+}
+
+apply from: 'buildScripts/gradle/common.gradle'
+apply from: "buildScripts/gradle/maven.gradle"
+
+task clean(type: Delete) {//定义任务
+    delete rootProject.buildDir
+    dependsOn gradle.includedBuild('coding').task(':checks:clean')//添加依赖
+    dependsOn gradle.includedBuild('coding').task(':lint:clean')
+    dependsOn gradle.includedBuild('coding').task(':code-generator:clean')
+    dependsOn gradle.includedBuild('core').task(':gradle-plugin:clean')
+    dependsOn gradle.includedBuild('core').task(':common:clean')
+    dependsOn gradle.includedBuild('core').task(':loader:clean')
+    dependsOn gradle.includedBuild('core').task(':manager:clean')
+    dependsOn gradle.includedBuild('core').task(':runtime:clean')
+    dependsOn gradle.includedBuild('core').task(':activity-container:clean')
+    dependsOn gradle.includedBuild('core').task(':transform:clean')
+    dependsOn gradle.includedBuild('core').task(':transform-kit:clean')
+    dependsOn gradle.includedBuild('dynamic').task(':dynamic-host:clean')
+    dependsOn gradle.includedBuild('dynamic').task(':dynamic-loader:clean')
+    dependsOn gradle.includedBuild('dynamic').task(':dynamic-loader-impl:clean')
+    dependsOn gradle.includedBuild('dynamic').task(':dynamic-manager:clean')
+}
